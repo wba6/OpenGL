@@ -5,7 +5,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 find_package(OpenGL REQUIRED)
 
-add_executable(OpenGL main.cpp)
+include_directories(${PROJECT_SOURCE_DIR}/vender/glfw/include)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glfw)
+add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glad)
+
+add_executable(OpenGL main.cpp glfwWindow.cpp glfwWindow.h Core_defines.h)
 
 
-target_link_libraries(${PROJECT_NAME} opengl32)
+
+target_link_libraries(${PROJECT_NAME} opengl32 glfw ${GLFW_LIBRARIES} glad)
