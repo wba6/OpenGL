@@ -11,7 +11,7 @@
 #include <GLFW/glfw3.h>
 #include <string>
 class glfwWindow {
-    glfwWindow(const char *title, unsigned int width, unsigned int height);
+    glfwWindow(const char *title, int width, int height);
 
 public:
     virtual ~glfwWindow();
@@ -19,13 +19,14 @@ public:
     GLFWwindow* GetWindow();
     void processInput();
 
-    [[nodiscard]] static glfwWindow *CreateWindow(const char *title, unsigned int width, unsigned int height);
+    [[nodiscard]] static glfwWindow *CreateWindow(const char *title, int width, int height);
+
 private:
     static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     struct windowAtrributes {
         std::string title;
-        unsigned int width;
-        unsigned int height;
+        int width;
+        int height;
     };
 
     windowAtrributes m_windowProps;

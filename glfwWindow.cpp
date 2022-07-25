@@ -7,7 +7,8 @@
 
 glfwWindow* glfwWindow::s_instance = nullptr;
 
-glfwWindow::glfwWindow(const char* title, unsigned int width, unsigned int height) {
+glfwWindow::glfwWindow(const char *title, int width, int height)
+{
     s_instance = this;
     m_windowProps.title = title;
     m_windowProps.width = width;
@@ -19,10 +20,11 @@ glfwWindow::~glfwWindow()
 {
     glfwTerminate();
 }
-glfwWindow *glfwWindow::CreateWindow(const char *title, unsigned int width, unsigned int height)
+glfwWindow *glfwWindow::CreateWindow(const char *title, int width, int height)
 {
-    if(s_instance == nullptr){
-        s_instance = new glfwWindow(title, width,height);
+    if (s_instance == nullptr)
+    {
+        s_instance = new glfwWindow(title, width, height);
     }
     return s_instance;
 }
@@ -35,7 +37,7 @@ void glfwWindow::InitGlfwAndGlad()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     //setting up our window
-    m_window = glfwCreateWindow(800, 600, "OpenGL", nullptr, nullptr);
+    m_window = glfwCreateWindow(m_windowProps.width, m_windowProps.width, m_windowProps.title.c_str(), nullptr, nullptr);
     if (m_window == nullptr)
     {
         LOG("Failed to created window")
