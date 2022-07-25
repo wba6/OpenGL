@@ -6,9 +6,9 @@
 #define OPENGL_GLFWWINDOW_H
 
 //Glad must be included first
-#include <glad/glad.h>
+#include "glad/glad.h"
 
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 #include <string>
 class glfwWindow {
     glfwWindow(const char *title, int width, int height);
