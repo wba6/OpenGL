@@ -62,3 +62,8 @@ void glfwWindow::framebuffer_size_callback(GLFWwindow *window, int width, int he
 {
     glViewport(0, 0, width, height);
 }
+void glfwWindow::processInput()
+{
+    if(glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(m_window, true);
+}

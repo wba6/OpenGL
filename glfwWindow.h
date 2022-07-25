@@ -17,6 +17,7 @@ public:
     virtual ~glfwWindow();
     void InitGlfwAndGlad();
     GLFWwindow* GetWindow();
+    void processInput();
 
     [[nodiscard]] static glfwWindow *CreateWindow(const char *title, unsigned int width, unsigned int height);
 private:
