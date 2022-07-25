@@ -37,7 +37,7 @@ void glfwWindow::InitGlfwAndGlad()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     //setting up our window
-    m_window = glfwCreateWindow(m_windowProps.width, m_windowProps.width, m_windowProps.title.c_str(), nullptr, nullptr);
+    m_window = glfwCreateWindow(m_windowProps.width, m_windowProps.height, m_windowProps.title.c_str(), nullptr, nullptr);
     if (m_window == nullptr)
     {
         LOG("Failed to created window")
