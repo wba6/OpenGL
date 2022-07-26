@@ -4,7 +4,7 @@
 
 #ifndef OPENGL_SHADER_H
 #define OPENGL_SHADER_H
-#include "Core_defines.h";
+#include "Core_defines.h"
 #include "glad/glad.h"
 
 class shader {
