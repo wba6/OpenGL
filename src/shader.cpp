@@ -60,7 +60,11 @@ shader::~shader()
 }
 int shader::getUniformLoc(const char *uniform)
 {
-    return glGetUniformLocation(m_shaderProgramID, uniform);
+
+    int loc = glGetUniformLocation(m_shaderProgramID, uniform);
+    if (loc == -1)
+        throw "Shader not found";
+    return loc;
 }
 void shader::SetUniform4f(const char *uniform, float x, float y, float z, float w)
 {
