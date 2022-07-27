@@ -10,7 +10,7 @@ include_directories(${PROJECT_SOURCE_DIR}/vender/glfw/include)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glfw)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glad)
 
-add_executable(OpenGL src/main.cpp src/glfwWindow.cpp src/glfwWindow.h src/Core_defines.h src/shader.cpp src/shader.h)
+add_executable(OpenGL src/main.cpp src/glfwWindow.cpp src/glfwWindow.h src/Core_defines.h src/shader.cpp src/shader.h src/vender/stb_image.h src/vender/stb_image.cpp)
 
 
 
