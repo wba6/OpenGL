@@ -106,3 +106,7 @@ void shader::SetUniform4f(const char *uniform, float x, float y, float z, float 
 {
     glUniform4f(getUniformLoc(uniform), x, y, z, w);
 }
+void shader::SetUniform1i(const char *uniform, int value)
+{
+    glUniform1i(getUniformLoc(uniform), value);
+}
