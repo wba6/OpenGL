@@ -1,10 +1,10 @@
 #include <iostream>
 
 
+#include "../vender/stb/stb_image.h"
 #include "Core_defines.h"
 #include "glfwWindow.h"
 #include "shader.h"
-#include "vender/stb_image.h"
 const char *vertexShaderSource = "#version 330 core\n"
                                  "layout (location = 0) in vec3 aPos;\n"
                                  "layout (location = 1) in vec3 aColor;\n"
@@ -101,7 +101,7 @@ int main()
     glBindVertexArray(0);
 
 
-    shader shaderObj(vertexShaderSource, fragmentShaderSource);
+    shader shaderObj("shaders/vertexShader.shader", "shaders/fragmentShader.shader");
 
     shaderObj.bind();
 

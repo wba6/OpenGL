@@ -10,7 +10,7 @@
 class shader {
 
 public:
-    shader(const char *vertexShader, const char *fragmentShader);
+    shader(const char *vertexShaderPath, const char *fragmentShaderPath);
     virtual ~shader();
 
 
