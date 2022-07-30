@@ -6,7 +6,7 @@
 #define OPENGL_SHADER_H
 #include "Core_defines.h"
 #include "glad/glad.h"
-
+#include <glm/glm.hpp>
 class shader {
 
 public:
@@ -18,6 +18,7 @@ public:
     void unBind();
 
     void SetUniform4f(const char *uniform, float x, float y, float z, float w);
+    void SetUniformMat4(const char *uniform, glm::mat4 trans);
     void SetUniform1i(const char *uniform, int value);
 
 private:

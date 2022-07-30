@@ -4,6 +4,7 @@
 
 #include "shader.h"
 #include <fstream>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <sstream>
 
@@ -109,4 +110,8 @@ void shader::SetUniform4f(const char *uniform, float x, float y, float z, float 
 void shader::SetUniform1i(const char *uniform, int value)
 {
     glUniform1i(getUniformLoc(uniform), value);
+}
+void shader::SetUniformMat4(const char *uniform, glm::mat4 trans)
+{
+    glUniformMatrix4fv(getUniformLoc(uniform), 1, GL_FALSE, glm::value_ptr(trans));
 }
