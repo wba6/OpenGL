@@ -1,9 +1,6 @@
 [submodule "vender/glfw"]
 	path = vender/glfw
 	url = https://github.com/glfw/glfw
-[submodule "vender/glad"]
-	path = vender/glad
-	url = https://github.com/Dav1dde/glad
 [submodule "vender/glm"]
 	path = vender/glm
 	url = https://github.com/g-truc/glm.git

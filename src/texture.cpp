@@ -4,7 +4,7 @@
 #include "texture.h"
 #include "../vender/stb/stb_image.h"
 #include "Core_defines.h"
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 texture::texture(const char *textureFilePath, int pixelFormat)
     : width(0), height(0)

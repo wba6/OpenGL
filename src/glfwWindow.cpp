@@ -4,8 +4,9 @@
 
 #include "glfwWindow.h"
 #include "Core_defines.h"
+#include <GLFW/glfw3.h>
 
-glfwWindow* glfwWindow::s_instance = nullptr;
+glfwWindow *glfwWindow::s_instance = nullptr;
 
 glfwWindow::glfwWindow(const char *title, int width, int height)
 {
@@ -32,9 +33,9 @@ void glfwWindow::InitGlfwAndGlad()
 {
     //setting flags for glfw
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    //    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    //    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    //    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     //setting up our window
     m_window = glfwCreateWindow(m_windowProps.width, m_windowProps.height, m_windowProps.title.c_str(), nullptr, nullptr);
@@ -66,6 +67,6 @@ void glfwWindow::framebuffer_size_callback(GLFWwindow *window, int width, int he
 }
 void glfwWindow::processInput()
 {
-    if(glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(m_window, true);
 }

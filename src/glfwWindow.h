@@ -6,17 +6,17 @@
 #define OPENGL_GLFWWINDOW_H
 
 //Glad must be included first
-#include "glad/glad.h"
-
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+struct GLFWwindow;
 #include <string>
+
 class glfwWindow {
     glfwWindow(const char *title, int width, int height);
 
 public:
     virtual ~glfwWindow();
     void InitGlfwAndGlad();
-    GLFWwindow* GetWindow();
+    GLFWwindow *GetWindow();
     void processInput();
 
     [[nodiscard]] static glfwWindow *CreateWindow(const char *title, int width, int height);
@@ -31,6 +31,7 @@ private:
 
     windowAtrributes m_windowProps;
     GLFWwindow *m_window;
+
 private:
     static glfwWindow *s_instance;
 };
