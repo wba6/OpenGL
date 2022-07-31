@@ -60,12 +60,6 @@ int main()
     tex1.bind(0);
     tex2.bind(1);
 
-    glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
-    glm::mat4 trans = glm::mat4(1.0f);
-    trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
-    vec = trans * vec;
-    std::cout << vec.x << vec.y << vec.z << std::endl;
-
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -95,7 +89,6 @@ int main()
     shader shaderObj("shaders/vertexShader.shader", "shaders/fragmentShader.shader");
 
     shaderObj.bind();
-
     shaderObj.SetUniform1i("ourTexture", 0);
     shaderObj.SetUniform1i("texture2", 1);
     //wireframe
