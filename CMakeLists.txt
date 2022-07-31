@@ -8,6 +8,7 @@ find_package(OpenGL REQUIRED)
 include_directories("${PROJECT_SOURCE_DIR}/vender/glfw/include"
         "${PROJECT_SOURCE_DIR}/vender/glm/glm"
         " ${PROJECT_SOURCE_DIR}/vender/glad/include"
+        " ${PROJECT_SOURCE_DIR}/vender/"
         )
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glfw)

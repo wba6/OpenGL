@@ -1,8 +1,8 @@
 
-#include "../vender/stb/stb_image.h"
 #include "Core_defines.h"
 #include "glfwWindow.h"
 #include "shader.h"
+#include "stb/stb_image.h"
 #include "texture.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
