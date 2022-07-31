@@ -113,11 +113,14 @@ int main()
         shaderObj.bind();
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        //identity matrix
+        trans = glm::mat4(1.0f);
+        //trans = glm::translate(trans, glm::vec3(0.5f,0.5f,0.0f));
+        //moves up and down on y axis
+        trans = glm::translate(trans, glm::vec3(0.0f, (cos(glfwGetTime())) / 2, 0.0f));
+        //rotates on x, y and z
+        trans = glm::rotate(trans, (float) glfwGetTime(), glm::vec3(1.0f, 1.0f, 1.0f));
 
-        trans = glm::mat4(1.0f);// reset it to identity matrix
-        trans = glm::translate(trans, glm::vec3(-0.5f, 0.5f, 0.0f));
-        float scaleAmount = static_cast<float>(sin(glfwGetTime()));
-        trans = glm::scale(trans, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
         shaderObj.SetUniformMat4("transform", trans);
 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
