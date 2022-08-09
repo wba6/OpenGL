@@ -108,7 +108,6 @@ int main()
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         //identity matrix
         trans = glm::mat4(1.0f);
-        //trans = glm::translate(trans, glm::vec3(0.5f,0.5f,0.0f));
         //moves up and down on y axis
         trans = glm::translate(trans, glm::vec3(0.0f, (cos(glfwGetTime())) / 2, 0.0f));
         //rotates on x, y and z
