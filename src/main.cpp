@@ -9,28 +9,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-const char *vertexShaderSource = "#version 330 core\n"
-                                 "layout (location = 0) in vec3 aPos;\n"
-                                 "layout (location = 1) in vec3 aColor;\n"
-                                 "layout (location = 2) in vec2 aTexCoord;\n"
-                                 "out vec3 ourColorPass;\n"
-                                 "out vec2 TexCord;\n"
-                                 "void main()\n"
-                                 "{\n"
-                                 "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-                                 "   ourColorPass = aColor;\n"
-                                 "   TexCord = aTexCoord;\n"
-                                 "}\0";
-const char *fragmentShaderSource = "#version 330 core\n"
-                                   "out vec4 FragColor;\n"
-                                   "in vec3 ourColorPass;\n"
-                                   "in vec2 TexCord;\n"
-                                   "uniform sampler2D ourTexture;\n"
-                                   "void main()\n"
-                                   "{\n"
-                                   "   FragColor = texture(ourTexture, TexCord) * vec4(ourColorPass,1.0f);\n"
-                                   "}\n\0";
 
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+void processInput(GLFWwindow *window);
+
+float deltaTime = 0.0f;// Time between current frame and last frame
+float lastFrame = 0.0f;// Time of last frame
 int main()
 {
     glfwWindow *window = glfwWindow::CreateWindow("glfw window", 800, 600);
@@ -133,13 +120,17 @@ int main()
     while (!glfwWindowShouldClose(window->GetWindow()))
     {
         window->processInput();
-
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        processInput(window->GetWindow());
+        glClearColor(0.29f, 0.38f, 0.61f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glm::mat4 view = glm::mat4(1.0f);
+
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+        //glm::mat4 view = glm::mat4(1.0f);
         // note that we're translating the scene in the reverse direction of where we want to move
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
         glm::mat4 projection;
         projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
@@ -169,4 +160,17 @@ int main()
 
     delete window;
     return 0;
+}
+
+void processInput(GLFWwindow *window)
+{
+    const float cameraSpeed = 2.5f * deltaTime;// adjust accordingly
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        cameraPos += cameraSpeed * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 }
