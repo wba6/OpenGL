@@ -3,6 +3,7 @@
 //
 
 #include "glfwWindow.h"
+#include "Camera.h"
 #include "Core_defines.h"
 #include <GLFW/glfw3.h>
 
@@ -19,7 +20,10 @@ glfwWindow::glfwWindow(const char *title, int width, int height)
 }
 glfwWindow::~glfwWindow()
 {
+
+    glfwDestroyWindow(m_window);
     glfwTerminate();
+    delete s_instance;
 }
 glfwWindow *glfwWindow::CreateWindow(const char *title, int width, int height)
 {
@@ -56,6 +60,8 @@ void glfwWindow::InitGlfwAndGlad()
     glViewport(0, 0, 800, 600);
 
     glfwSetFramebufferSizeCallback(m_window, glfwWindow::framebuffer_size_callback);
+    glfwSetCursorPosCallback(m_window, Camera::mouse_callback);
+    glfwSetScrollCallback(m_window, Camera::scroll_callback);
     glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 GLFWwindow *glfwWindow::GetWindow()

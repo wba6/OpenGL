@@ -80,7 +80,7 @@ void shader::shaderCompileStatus(unsigned int id)
         glGetShaderInfoLog(id, 512, NULL, infoLog);
         std::cout << "ERROR::SHADER::COMPILATION_FAILED\n"
                   << infoLog << std::endl;
-        throw "Shader failed to compile";
+        throw "m_Shader failed to compile";
     }
 }
 void shader::bind()
@@ -101,7 +101,7 @@ int shader::getUniformLoc(const char *uniform)
 
     int loc = glGetUniformLocation(m_shaderProgramID, uniform);
     if (loc == -1)
-        throw "Shader not found";
+        throw "m_Shader not found";
     return loc;
 }
 void shader::SetUniform4f(const char *uniform, float x, float y, float z, float w)

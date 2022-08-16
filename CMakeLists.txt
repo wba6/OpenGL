@@ -1,23 +1,28 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.15)
 project(OpenGL)
 
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(OpenGL REQUIRED)
-
-include_directories("${PROJECT_SOURCE_DIR}/vender/glfw/include"
-        "${PROJECT_SOURCE_DIR}/vender/glm/glm"
-        " ${PROJECT_SOURCE_DIR}/vender/glad/include"
-        " ${PROJECT_SOURCE_DIR}/vender/"
-        )
-
+if (WIN32)
+    include_directories("${PROJECT_SOURCE_DIR}/vender/glfw/include"
+            "${PROJECT_SOURCE_DIR}/vender/glm/glm"
+            " ${PROJECT_SOURCE_DIR}/vender/glad/include"
+            " ${PROJECT_SOURCE_DIR}/vender/"
+            )
+endif ()
+if (UNIX)
+    include_directories(
+            " ${PROJECT_SOURCE_DIR}/vender/"
+    )
+endif ()
 add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glfw)
 add_compile_definitions(GLFW_INCLUDE_NONE)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glm)
 
 add_executable(OpenGL src/main.cpp src/glfwWindow.cpp src/glfwWindow.h src/Core_defines.h src/shader.cpp src/shader.h
         vender/stb/stb_image.h vender/stb/stb_image.cpp src/texture.cpp src/texture.h vender/glad/include/glad/glad.h
-        vender/glad/src/glad.c)
+        vender/glad/src/glad.c src/Camera.cpp src/Camera.h)
 
 
 target_link_libraries(${PROJECT_NAME} glfw glm)
