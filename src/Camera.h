@@ -12,7 +12,7 @@
 #include <glm/gtc/type_ptr.hpp>
 class Camera {
 public:
-    Camera(shader &shaderObj);
+    Camera(std::shared_ptr<shader> shaderObj);
 
 
     void processInput(GLFWwindow *window);
@@ -30,7 +30,7 @@ private:
     static glm::vec3 s_cameraFront;
     float m_deltaTime;
     float m_lastFrame;
-    shader &m_Shader;
+    std::shared_ptr<shader> m_Shader;
     glm::mat4 m_projection;
     glm::vec3 m_cameraPos;
     glm::vec3 m_cameraUp;

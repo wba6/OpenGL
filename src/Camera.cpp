@@ -4,6 +4,8 @@
 
 #include "Camera.h"
 
+#include <utility>
+
 float Camera::s_lastX{400.f};
 float Camera::s_lastY{300.f};
 bool Camera::s_firstMouse{true};
@@ -12,9 +14,10 @@ float Camera::s_pitch{0.0f};
 float Camera::s_fov{45.f};
 glm::vec3 Camera::s_cameraFront{glm::vec3(0.0f, 0.0f, -1.0f)};
 
-Camera::Camera(shader &shaderObj)
-    : m_deltaTime(0.0f), m_lastFrame(0.0f), m_Shader(shaderObj), m_cameraPos(glm::vec3(0.0f, 0.0f, 3.0f)), m_cameraUp(glm::vec3(0.0f, 1.0f, 0.0f))
-{}
+Camera::Camera(std::shared_ptr<shader> shaderObj)
+    : m_deltaTime(0.0f), m_lastFrame(0.0f), m_Shader(std::move(shaderObj)), m_cameraPos(glm::vec3(0.0f, 0.0f, 3.0f)), m_cameraUp(glm::vec3(0.0f, 1.0f, 0.0f))
+{
+}
 
 void Camera::onUpdate()
 {
@@ -23,8 +26,8 @@ void Camera::onUpdate()
     m_lastFrame = currentFrame;
     m_view = glm::lookAt(m_cameraPos, m_cameraPos + s_cameraFront, m_cameraUp);
     m_projection = glm::perspective(glm::radians(s_fov), 800.0f / 600.0f, 0.1f, 100.0f);
-    m_Shader.SetUniformMat4("view", m_view);
-    m_Shader.SetUniformMat4("projection", m_projection);
+    m_Shader->SetUniformMat4("view", m_view);
+    m_Shader->SetUniformMat4("projection", m_projection);
 }
 
 void Camera::processInput(GLFWwindow *window)
