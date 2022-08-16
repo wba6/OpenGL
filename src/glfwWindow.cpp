@@ -23,7 +23,6 @@ glfwWindow::~glfwWindow()
 
     glfwDestroyWindow(m_window);
     glfwTerminate();
-    delete s_instance;
 }
 glfwWindow *glfwWindow::CreateWindow(const char *title, int width, int height)
 {
