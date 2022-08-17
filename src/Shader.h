@@ -6,17 +6,18 @@
 #define OPENGL_SHADER_H
 #include "Core_defines.h"
 #include <glm/glm.hpp>
-class shader {
+class Shader {
 
 public:
-    shader(const char *vertexShaderPath, const char *fragmentShaderPath);
-    virtual ~shader();
+    Shader(const char *vertexShaderPath, const char *fragmentShaderPath);
+    virtual ~Shader();
 
 
     void bind();
     void unBind();
 
     void SetUniform4f(const char *uniform, float x, float y, float z, float w);
+    void SetUniform3f(const char *uniform, float x, float y, float z);
     void SetUniformMat4(const char *uniform, glm::mat4 trans);
     void SetUniform1i(const char *uniform, int value);
 

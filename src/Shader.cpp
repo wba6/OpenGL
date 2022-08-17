@@ -2,14 +2,14 @@
 // Created by William Aey on 7/26/2022.
 //
 
-#include "shader.h"
+#include "Shader.h"
 #include "glad/glad.h"
 #include <fstream>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <sstream>
 
-shader::shader(const char *vertexShaderPath, const char *fragmentShaderPath)
+Shader::Shader(const char *vertexShaderPath, const char *fragmentShaderPath)
 {
     // 1. retrieve the vertex/fragment source code from filePath
     std::string vertexCode;
@@ -69,7 +69,7 @@ shader::shader(const char *vertexShaderPath, const char *fragmentShaderPath)
                   << infoLog << std::endl;
     }
 }
-void shader::shaderCompileStatus(unsigned int id)
+void Shader::shaderCompileStatus(unsigned int id)
 {
     int success;
     char infoLog[512];
@@ -83,20 +83,20 @@ void shader::shaderCompileStatus(unsigned int id)
         throw "m_Shader failed to compile";
     }
 }
-void shader::bind()
+void Shader::bind()
 {
     glUseProgram(m_shaderProgramID);
 }
-void shader::unBind()
+void Shader::unBind()
 {
     glUseProgram(0);
 }
-shader::~shader()
+Shader::~Shader()
 {
     glDeleteShader(m_vertexShaderID);
     glDeleteShader(m_vertexShaderID);
 }
-int shader::getUniformLoc(const char *uniform)
+int Shader::getUniformLoc(const char *uniform)
 {
 
     int loc = glGetUniformLocation(m_shaderProgramID, uniform);
@@ -104,15 +104,19 @@ int shader::getUniformLoc(const char *uniform)
         throw "m_Shader not found";
     return loc;
 }
-void shader::SetUniform4f(const char *uniform, float x, float y, float z, float w)
+void Shader::SetUniform4f(const char *uniform, float x, float y, float z, float w)
 {
     glUniform4f(getUniformLoc(uniform), x, y, z, w);
 }
-void shader::SetUniform1i(const char *uniform, int value)
+void Shader::SetUniform1i(const char *uniform, int value)
 {
     glUniform1i(getUniformLoc(uniform), value);
 }
-void shader::SetUniformMat4(const char *uniform, glm::mat4 trans)
+void Shader::SetUniformMat4(const char *uniform, glm::mat4 trans)
 {
     glUniformMatrix4fv(getUniformLoc(uniform), 1, GL_FALSE, glm::value_ptr(trans));
+}
+void Shader::SetUniform3f(const char *uniform, float x, float y, float z)
+{
+    glUniform3f(getUniformLoc(uniform), x, y, z);
 }

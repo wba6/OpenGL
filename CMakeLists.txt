@@ -20,7 +20,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glfw)
 add_compile_definitions(GLFW_INCLUDE_NONE)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vender/glm)
 
-add_executable(OpenGL src/main.cpp src/glfwWindow.cpp src/glfwWindow.h src/Core_defines.h src/shader.cpp src/shader.h
+add_executable(OpenGL src/main.cpp src/glfwWindow.cpp src/glfwWindow.h src/Core_defines.h src/Shader.cpp src/Shader.h
         vender/stb/stb_image.h vender/stb/stb_image.cpp src/texture.cpp src/texture.h vender/glad/include/glad/glad.h
         vender/glad/src/glad.c src/Camera.cpp src/Camera.h src/ScenePicker.cpp src/ScenePicker.h src/Scene.h src/Scenes/RoomOfBoxes.h src/Scenes/Lighting.h)
 

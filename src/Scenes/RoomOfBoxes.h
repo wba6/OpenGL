@@ -40,7 +40,7 @@ public:
         tex1.bind(0);
         tex2.bind(1);
 
-        shaderObj = std::make_shared<shader>("shaders/vertexShader.shader", "shaders/fragmentShader.shader");
+        shaderObj = std::make_shared<Shader>("shaders/vertexShader.Shader", "shaders/fragmentShader.Shader");
         camera = std::make_unique<Camera>(shaderObj);
 
         shaderObj->bind();
@@ -133,5 +133,5 @@ private:
             glm::vec3(-1.3f, 1.0f, -1.5f)};
 
     std::unique_ptr<Camera> camera;
-    std::shared_ptr<shader> shaderObj;
+    std::shared_ptr<Shader> shaderObj;
 };

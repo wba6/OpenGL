@@ -5,14 +5,14 @@
 #ifndef OPENGL_CAMERA_H
 #define OPENGL_CAMERA_H
 #include "Core_defines.h"
-#include "shader.h"
+#include "Shader.h"
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 class Camera {
 public:
-    Camera(std::shared_ptr<shader> shaderObj);
+    Camera(std::shared_ptr<Shader> shaderObj);
 
 
     void processInput(GLFWwindow *window);
@@ -30,7 +30,7 @@ private:
     static glm::vec3 s_cameraFront;
     float m_deltaTime;
     float m_lastFrame;
-    std::shared_ptr<shader> m_Shader;
+    std::shared_ptr<Shader> m_Shader;
     glm::mat4 m_projection;
     glm::vec3 m_cameraPos;
     glm::vec3 m_cameraUp;
