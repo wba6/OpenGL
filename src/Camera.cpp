@@ -32,7 +32,7 @@ void Camera::onUpdate()
 
 void Camera::processInput(GLFWwindow *window)
 {
-    const float cameraSpeed = 2.5f * m_deltaTime;// adjust accordingly
+    const float cameraSpeed = 4.5f * m_deltaTime;// adjust accordingly
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         m_cameraPos += cameraSpeed * s_cameraFront;
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -41,6 +41,11 @@ void Camera::processInput(GLFWwindow *window)
         m_cameraPos -= glm::normalize(glm::cross(s_cameraFront, m_cameraUp)) * cameraSpeed;
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         m_cameraPos += glm::normalize(glm::cross(s_cameraFront, m_cameraUp)) * cameraSpeed;
+
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        m_cameraPos += m_cameraUp * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+        m_cameraPos -= m_cameraUp * cameraSpeed;
 }
 void Camera::scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 {
