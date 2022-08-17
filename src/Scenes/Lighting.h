@@ -42,39 +42,43 @@ public:
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *) 0);
         glEnableVertexAttribArray(0);
 
-        //lightshaderObj = std::make_shared<Shader>("shaders/lighting/vertexLighting.Shader","shaders/lighting/fragmentLighting.Shader");
-        lightshaderObj = std::make_shared<Shader>("shaders/vertexShader.Shader", "shaders/fragmentShader.Shader");
-        cubeshaderObj = std::make_shared<Shader>("shaders/lighting/fragmentBlank.Shader", "shaders/lighting/fragmentBlank.Shader");
-        //lightshaderObj->bind();
-        //lightshaderObj->SetUniform3f("objectColor", 1.0f,0.5f,0.31f);
-        //lightshaderObj->SetUniform3f("lightColor", 1.0f,1.0f,1.0f);
-
-        camera = std::make_unique<Camera>(lightshaderObj);
+        lightingShader = std::make_shared<Shader>("shaders/lighting/1.colors.vs", "shaders/lighting/1.colors.fs");
+        lightCubeShader = std::make_shared<Shader>("shaders/lighting/1.light_cube.vs", "shaders/lighting/1.light_cube.fs");
+        cameraLight = std::make_unique<Camera>(lightingShader);
+        cameraCube = std::make_unique<Camera>(lightCubeShader);
     };
     void OnUpdate(glfwWindow *&window) override
     {
-        camera->processInput(window->GetWindow());
+        cameraLight->processInput(window->GetWindow());
+        cameraCube->processInput(window->GetWindow());
     }
     void OnRender() override
     {
-        lightshaderObj->bind();
-        //lightshaderObj->SetUniform3f("objectColor", 1.0f,0.5f,0.31f);
-        //lightshaderObj->SetUniform3f("lightColor", 1.0f,1.0f,1.0f);
-        camera->onUpdate();
+        lightingShader->bind();
+        lightingShader->SetUniform3f("objectColor", 1.0f, 0.5f, 0.31f);
+        lightingShader->SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
+        cameraLight->onUpdate();
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -1.5f));
+        lightingShader->SetUniformMat4("model", model);
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
-        //        cubeshaderObj->bind();
-        //        glBindVertexArray(lightCubeVAO);
-        //        glDrawArrays(GL_TRIANGLES, 0, 36);
+        lightCubeShader->bind();
+        cameraCube->onUpdate();
+        model = glm::translate(model, glm::vec3(0.5f, 0.5f, -1.5f));
+        lightCubeShader->SetUniformMat4("model", model);
+        glBindVertexArray(lightCubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
     }
 
 private:
     unsigned int cubeVAO;
     unsigned int lightCubeVAO;
-    std::unique_ptr<Camera> camera;
-    std::shared_ptr<Shader> lightshaderObj;
-    std::shared_ptr<Shader> cubeshaderObj;
+    std::unique_ptr<Camera> cameraLight;
+    std::unique_ptr<Camera> cameraCube;
+    std::shared_ptr<Shader> lightingShader;
+    std::shared_ptr<Shader> lightCubeShader;
     float vertices[108]{
             -0.5f, -0.5f, -0.5f,
             0.5f, -0.5f, -0.5f,
