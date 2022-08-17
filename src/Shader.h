@@ -4,7 +4,7 @@
 
 #ifndef OPENGL_SHADER_H
 #define OPENGL_SHADER_H
-#include "Core_defines.h"
+#include "Common_defines.h"
 #include <glm/glm.hpp>
 class Shader {
 
@@ -22,7 +22,7 @@ public:
     void SetUniform1i(const char *uniform, int value);
 
 private:
-    int getUniformLoc(const char *uniform);
+    int getUniformLoc(const char *uniform) const;
     void shaderCompileStatus(unsigned int id);
 
     int m_shaderProgramID;

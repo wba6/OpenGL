@@ -4,7 +4,7 @@
 
 #ifndef OPENGL_SCENEPICKER_H
 #define OPENGL_SCENEPICKER_H
-#include "Core_defines.h"
+#include "Common_defines.h"
 #include "Scene.h"
 class ScenePicker {
 public:
@@ -13,7 +13,7 @@ public:
     void NextScene();
 
 private:
-    void currentScene();
+    Scene *m_CurrentScene;
     std::vector<Scene *> m_scenes;
 };
 

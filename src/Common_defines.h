@@ -3,7 +3,6 @@
 //
 
 #pragma once
-#define OPENGL_CORE_DEFINES_H
 #include <Memory>
 #include <Vector>
 #include <iostream>

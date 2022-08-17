@@ -1,17 +1,10 @@
 
 #include "Camera.h"
-#include "Core_defines.h"
 #include "Scenes/Lighting.h"
 #include "Scenes/RoomOfBoxes.h"
-#include "Shader.h"
 #include "glfwWindow.h"
-#include "stb/stb_image.h"
-#include "texture.h"
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+
 
 int main()
 {

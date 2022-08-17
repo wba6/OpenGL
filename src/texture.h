@@ -5,7 +5,7 @@
 #ifndef OPENGL_TEXTURE_H
 #define OPENGL_TEXTURE_H
 
-
+#include "stb/stb_image.h"
 class texture {
 public:
     texture(const char *textureFilePath, int pixelFormat);

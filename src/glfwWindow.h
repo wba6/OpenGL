@@ -5,24 +5,21 @@
 #ifndef OPENGL_GLFWWINDOW_H
 #define OPENGL_GLFWWINDOW_H
 
-//Glad must be included first
+//Glad must be included before glfw
 #include <glad/glad.h>
 struct GLFWwindow;
 #include <string>
 
 class glfwWindow {
-    glfwWindow(const char *title, int width, int height);
-
 public:
     virtual ~glfwWindow();
     void InitGlfwAndGlad();
     GLFWwindow *GetWindow();
     void processInput();
-
     [[nodiscard]] static glfwWindow *CreateWindow(const char *title, int width, int height);
 
 private:
-    static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+    explicit glfwWindow(const char *title, int width, int height);
     struct windowAtrributes {
         std::string title;
         int width;
@@ -33,6 +30,7 @@ private:
     GLFWwindow *m_window;
 
 private:
+    static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     static glfwWindow *s_instance;
 };
 

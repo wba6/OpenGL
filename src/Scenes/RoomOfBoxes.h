@@ -5,7 +5,7 @@
 #pragma once
 #define OPENGL_ROOMOFBOXES_H
 #include "../Camera.h"
-#include "../Core_defines.h"
+#include "../Common_defines.h"
 #include "../Scene.h"
 #include "../glfwWindow.h"
 #include "../texture.h"
@@ -23,7 +23,7 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices), m_vertices, GL_STATIC_DRAW);
 
         // position attribute
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *) 0);
@@ -40,52 +40,52 @@ public:
         tex1.bind(0);
         tex2.bind(1);
 
-        shaderObj = std::make_shared<Shader>("shaders/vertexShader.Shader", "shaders/fragmentShader.Shader");
-        camera = std::make_unique<Camera>(shaderObj);
+        m_shaderObj = std::make_shared<Shader>("shaders/vertexShader.Shader", "shaders/fragmentShader.Shader");
+        m_camera = std::make_unique<Camera>(m_shaderObj);
 
-        shaderObj->bind();
-        shaderObj->SetUniform1i("ourTexture", 0);
-        shaderObj->SetUniform1i("texture2", 1);
+        m_shaderObj->bind();
+        m_shaderObj->SetUniform1i("ourTexture", 0);
+        m_shaderObj->SetUniform1i("texture2", 1);
     }
 
     void OnUpdate(glfwWindow *&window) override
     {
-        camera->processInput(window->GetWindow());
+        m_camera->processInput(window->GetWindow());
     }
 
     void OnRender() override
     {
-        camera->onUpdate();
+        m_camera->onUpdate();
 
-        shaderObj->bind();
+        m_shaderObj->bind();
         glBindVertexArray(VAO);
         for (unsigned int i = 0; i < 10; i++)
         {
             glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
+            model = glm::translate(model, m_cubePositions[i]);
             float angle = 20.0f * i;
             if (angle == 0)
                 angle = 40.0f;
             model = glm::rotate(model, (float) glfwGetTime() * glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            shaderObj->SetUniformMat4("model", model);
+            m_shaderObj->SetUniformMat4("model", model);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
     }
 
 private:
-    float vertices[180] = {-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-                           0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
-                           0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-                           0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-                           -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-                           -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+    float m_vertices[180] = {-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+                             0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+                             0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+                             0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+                             -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+                             -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
-                           -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-                           0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-                           0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-                           0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-                           -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+                             -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+                             0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+                             0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+                             0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+                             -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
                            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 
                            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
@@ -105,22 +105,22 @@ private:
                            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
                            0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
                            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-                           0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-                           -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-                           -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+                             0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+                             -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+                             -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-                           -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-                           0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-                           0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-                           0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-                           -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
-                           -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
-    const float texCoords[6] = {
+                             -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+                             0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+                             0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+                             0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+                             -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
+                             -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
+    const float m_texCoords[6] = {
             0.0f, 0.0f,// lower-left corner
             1.0f, 0.0f,// lower-right corner
             0.5f, 1.0f // top-center corner
     };
-    glm::vec3 cubePositions[10] = {
+    glm::vec3 m_cubePositions[10] = {
             glm::vec3(0.0f, 0.0f, -1.5f),
             glm::vec3(2.0f, 5.0f, -15.0f),
             glm::vec3(-1.5f, -2.2f, -2.5f),
@@ -132,6 +132,6 @@ private:
             glm::vec3(1.5f, 0.2f, -1.5f),
             glm::vec3(-1.3f, 1.0f, -1.5f)};
 
-    std::unique_ptr<Camera> camera;
-    std::shared_ptr<Shader> shaderObj;
+    std::unique_ptr<Camera> m_camera;
+    std::shared_ptr<Shader> m_shaderObj;
 };

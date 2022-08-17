@@ -96,7 +96,7 @@ Shader::~Shader()
     glDeleteShader(m_vertexShaderID);
     glDeleteShader(m_vertexShaderID);
 }
-int Shader::getUniformLoc(const char *uniform)
+int Shader::getUniformLoc(const char *uniform) const
 {
 
     int loc = glGetUniformLocation(m_shaderProgramID, uniform);

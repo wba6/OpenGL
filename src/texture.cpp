@@ -3,7 +3,7 @@
 //
 #include "texture.h"
 #include "../vender/stb/stb_image.h"
-#include "Core_defines.h"
+#include "Common_defines.h"
 #include <glad/glad.h>
 
 texture::texture(const char *textureFilePath, int pixelFormat)

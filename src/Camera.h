@@ -4,7 +4,7 @@
 
 #ifndef OPENGL_CAMERA_H
 #define OPENGL_CAMERA_H
-#include "Core_defines.h"
+#include "Common_defines.h"
 #include "Shader.h"
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>

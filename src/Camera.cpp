@@ -21,7 +21,7 @@ Camera::Camera(std::shared_ptr<Shader> shaderObj)
 
 void Camera::onUpdate()
 {
-    float currentFrame = glfwGetTime();
+    float currentFrame = (float) glfwGetTime();
     m_deltaTime = currentFrame - m_lastFrame;
     m_lastFrame = currentFrame;
     m_view = glm::lookAt(m_cameraPos, m_cameraPos + s_cameraFront, m_cameraUp);
@@ -59,15 +59,15 @@ void Camera::mouse_callback(GLFWwindow *window, double xpos, double ypos)
 {
     if (s_firstMouse)// initially set to true
     {
-        s_lastX = xpos;
-        s_lastY = ypos;
+        s_lastX = (float) xpos;
+        s_lastY = (float) ypos;
         s_firstMouse = false;
     }
 
-    float xoffset = xpos - s_lastX;
-    float yoffset = s_lastY - ypos;// reversed since y-coordinates range from bottom to top
-    s_lastX = xpos;
-    s_lastY = ypos;
+    float xoffset = (float) xpos - s_lastX;
+    float yoffset = s_lastY - (float) ypos;// reversed since y-coordinates range from bottom to top
+    s_lastX = (float) xpos;
+    s_lastY = (float) ypos;
 
     const float sensitivity = 0.1f;
     xoffset *= sensitivity;
