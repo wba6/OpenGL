@@ -11,7 +11,6 @@ int main()
     glfwWindow *window = glfwWindow::CreateWindow("glfw window", 800, 600);
     Lighting scene;
 
-
     //wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glEnable(GL_DEPTH_TEST);
