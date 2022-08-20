@@ -37,8 +37,8 @@ public:
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *) 0);
         glEnableVertexAttribArray(0);
 
-        lightingShader = std::make_shared<Shader>("shaders/lighting/1.colors.vs", "shaders/lighting/1.colors.fs");
-        lightCubeShader = std::make_shared<Shader>("shaders/lighting/1.light_cube.vs", "shaders/lighting/1.light_cube.fs");
+        lightingShader = std::make_shared<Shader>("shaders/lighting/1.colors.vs.shader", "shaders/lighting/1.colors.fs.shader");
+        lightCubeShader = std::make_shared<Shader>("shaders/lighting/1.light_cube.vs.shader", "shaders/lighting/1.light_cube.fs.shader");
         cameraLight = std::make_unique<Camera>(lightingShader);
         cameraCube = std::make_unique<Camera>(lightCubeShader);
     };
