@@ -30,7 +30,7 @@ texture::texture(const char *textureFilePath, int pixelFormat)
     }
     else
     {
-        LOG("Failed to load texture");
+        LOG("Failed to load texture")
     }
     stbi_image_free(data);
     glBindTexture(GL_TEXTURE_2D, 0);

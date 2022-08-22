@@ -6,4 +6,4 @@
 #include <Memory>
 #include <Vector>
 #include <iostream>
-#define LOG(x) std::cout << x << std::endl;
+#define LOG(x) std::cout << (x) << std::endl;

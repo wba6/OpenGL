@@ -3,7 +3,6 @@
 //
 
 #pragma once
-#define OPENGL_SCENE_H
 #include "glfwWindow.h"
 class Scene {
 public:

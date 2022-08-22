@@ -2,8 +2,8 @@
 // Created by William Aey on 7/24/2022.
 //
 
-#ifndef OPENGL_GLFWWINDOW_H
-#define OPENGL_GLFWWINDOW_H
+#pragma once
+
 
 //Glad must be included before glfw
 #include <glad/glad.h>
@@ -33,6 +33,3 @@ private:
     static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     static glfwWindow *s_instance;
 };
-
-
-#endif//OPENGL_GLFWWINDOW_H

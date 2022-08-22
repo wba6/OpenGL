@@ -12,7 +12,7 @@
 #include <glm/gtc/type_ptr.hpp>
 class Camera {
 public:
-    Camera(std::shared_ptr<Shader> shaderObj);
+    explicit Camera(std::shared_ptr<Shader> shaderObj);
 
 
     void processInput(GLFWwindow *window);
