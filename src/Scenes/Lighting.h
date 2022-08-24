@@ -51,10 +51,12 @@ public:
     }
     void OnRender() override
     {
-        glm::vec3 lightPos(1.5f, 2.5f, 1.5f);
+        glm::vec3 lightPos(1.5f, 2.5f, 2.5f);
+        glm::vec3 cameraPos = cameraLight->getCameraPos();
         lightingShader->bind();
         lightingShader->SetUniform3f("objectColor", 1.0f, 0.5f, 0.31f);
         lightingShader->SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
+        lightingShader->SetUniform3f("viewPos", cameraPos.x, cameraPos.y, cameraPos.z);
         cameraLight->onUpdate();
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, -0.5f, -1.5f));

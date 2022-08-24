@@ -17,6 +17,7 @@ public:
 
     void processInput(GLFWwindow *window);
     void onUpdate();
+    glm::vec3 getCameraPos();
     static void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
     static void mouse_callback(GLFWwindow *window, double xpos, double ypos);

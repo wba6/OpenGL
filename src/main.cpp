@@ -19,12 +19,12 @@ int main()
     {
         window->processInput();
         scene.OnUpdate(window);
-        glClearColor(0.29f, 0.38f, 0.61f, 1.0f);// ----sky blue
-        //glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // ----Dark gray
+        //glClearColor(0.29f, 0.38f, 0.61f, 1.0f);// ----sky blue
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);// ----Dark gray
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        scene.OnRender();
 
+        scene.OnRender();
 
         glfwSwapBuffers(window->GetWindow());
         glfwPollEvents();

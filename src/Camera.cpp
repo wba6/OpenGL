@@ -21,7 +21,7 @@ Camera::Camera(std::shared_ptr<Shader> shaderObj)
 
 void Camera::onUpdate()
 {
-    float currentFrame = (float) glfwGetTime();
+    auto currentFrame = (float) glfwGetTime();
     m_deltaTime = currentFrame - m_lastFrame;
     m_lastFrame = currentFrame;
     m_view = glm::lookAt(m_cameraPos, m_cameraPos + s_cameraFront, m_cameraUp);
@@ -86,4 +86,8 @@ void Camera::mouse_callback(GLFWwindow *window, double xpos, double ypos)
     direction.y = sin(glm::radians(s_pitch));
     direction.z = sin(glm::radians(s_yaw)) * cos(glm::radians(s_pitch));
     s_cameraFront = glm::normalize(direction);
+}
+glm::vec3 Camera::getCameraPos()
+{
+    return m_cameraPos;
 }
