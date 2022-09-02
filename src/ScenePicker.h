@@ -8,12 +8,13 @@
 #include "Scene.h"
 class ScenePicker {
 public:
-    ScenePicker() = default;
-    void AddScene();
+    ScenePicker();
+    ~ScenePicker();
+    void AddScene(Scene *scene);
     void NextScene();
 
 private:
-    Scene *m_CurrentScene;
+    unsigned int m_CurrentScene;
     std::vector<Scene *> m_scenes;
 };
 

@@ -5,6 +5,7 @@
     <sourceRoots>
       <file path="$PROJECT_DIR$/src" />
       <file path="$PROJECT_DIR$/src/shaders" />
+      <file path="$PROJECT_DIR$/vender" />
     </sourceRoots>
   </component>
 </project>

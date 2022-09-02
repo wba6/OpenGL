@@ -7,6 +7,7 @@
 class Scene {
 public:
     Scene() = default;
+    virtual ~Scene(){};
     virtual void OnUpdate(glfwWindow *&window) = 0;
     virtual void OnRender() = 0;
 
