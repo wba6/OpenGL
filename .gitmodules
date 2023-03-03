@@ -8,3 +8,6 @@
 	path = vender/imgui
 	url = https://github.com/TANK1-41/imgui
 	branch = docking
+[submodule "vender/assimp"]
+	path = vender/assimp
+	url = https://github.com/TANK1-41/assimp
