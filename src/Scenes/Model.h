@@ -4,11 +4,24 @@
 
 #ifndef OPENGL_MODEL_H
 #define OPENGL_MODEL_H
-#include "../Shader.h"
-#include "Mesh.h"
+#include <glad/glad.h>
+
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <stb/stb_image.h>
+
+#include "../Shader.h"
+#include "Mesh.h"
+
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <string>
+#include <vector>
 class Model {
 public:
     Model(char *path)
@@ -25,7 +38,7 @@ private:
     void loadModel(std::string path);
     void processNode(aiNode *node, const aiScene *scene);
     Mesh processMesh(aiMesh *mesh, const aiScene *scene);
-    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType *type, std::string typeName);
+    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
 };
 
 
