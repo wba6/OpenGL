@@ -6,6 +6,7 @@
 #define OPENGL_SHADER_H
 #include "Common_defines.h"
 #include <glm/glm.hpp>
+#include <unordered_map>
 class Shader {
 
 public:
@@ -28,6 +29,8 @@ private:
     int m_shaderProgramID;
     unsigned int m_fragmentShaderID;
     unsigned int m_vertexShaderID;
+    std::string m_FilePath;
+    mutable std::unordered_map<std::string, int> m_UniformLocationCache;
 };
 
 

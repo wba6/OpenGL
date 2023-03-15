@@ -28,7 +28,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/vender/assimp)
 add_executable(OpenGL src/main.cpp src/glfwWindow.cpp src/glfwWindow.h src/Common_defines.h src/Shader.cpp src/Shader.h
         vender/stb/stb_image.h vender/stb/stb_image.cpp src/texture.cpp src/texture.h vender/glad/include/glad/glad.h
         vender/glad/src/glad.c src/Camera.cpp src/Camera.h src/ScenePicker.cpp src/ScenePicker.h src/Scene.h src/Scenes/RoomOfBoxes.h src/Scenes/Lighting.h
-        src/Scenes/Mesh.cpp
+        src/Scenes/Mesh.cpp src/Scenes/Model.cpp
         )
 
 

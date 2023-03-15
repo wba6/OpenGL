@@ -98,10 +98,16 @@ Shader::~Shader()
 }
 int Shader::getUniformLoc(const char *uniform) const
 {
+    //makes it so we don't have to get the unformlocation again if we already have it
+    if (m_UniformLocationCache.find(uniform) != m_UniformLocationCache.end())
+        return m_UniformLocationCache[uniform];
 
     int loc = glGetUniformLocation(m_shaderProgramID, uniform);
     if (loc == -1)
-        throw "m_Shader not found";
+        std::cout << "Warning: uniform does not exist " << uniform << std::endl;
+
+    m_UniformLocationCache[uniform] = loc;
+
     return loc;
 }
 void Shader::SetUniform4f(const char *uniform, float x, float y, float z, float w)

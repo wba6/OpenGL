@@ -24,14 +24,15 @@
 #include <vector>
 class Model {
 public:
-    Model(char *path)
+    Model(std::string path)
     {
         loadModel(path);
     }
-    void Draw(Shader &shader);
+    void Draw(std::shared_ptr<Shader> shader);
 
 private:
     //model data
+    std::vector<Texture> textures_loaded;
     std::vector<Mesh> meshes;
     std::string directory;
 

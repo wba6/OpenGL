@@ -39,7 +39,7 @@ void Mesh::setupMesh()
 
     glBindVertexArray(0);
 }
-void Mesh::Draw(Shader &shader)
+void Mesh::Draw(std::shared_ptr<Shader> shader)
 {
     //TODO: break this down
     unsigned int diffuseNr = 1;
@@ -55,7 +55,7 @@ void Mesh::Draw(Shader &shader)
         else if (name == "texture_specular")
             number = std::to_string(specularNr++);
 
-        shader.SetUniform1i(("material." + name + number).c_str(), i);
+        shader->SetUniform1i(("material." + name + number).c_str(), i);
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
     glActiveTexture(GL_TEXTURE0);
