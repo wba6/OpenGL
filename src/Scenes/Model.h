@@ -24,7 +24,7 @@
 #include <vector>
 class Model {
 public:
-    Model(std::string path)
+    Model(char *path)
     {
         loadModel(path);
     }

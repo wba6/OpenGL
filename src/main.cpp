@@ -17,7 +17,7 @@ int main()
 
     // load models
     // -----------
-    Model ourModel(std::stringstream("shaders/backpack/backpack.obj").str());
+    Model ourModel("shaders/backpack/backpack.obj");
     Camera camera(ourShader);
     //wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
